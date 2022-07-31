@@ -27,6 +27,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  fluttertoast: ^8.0.9
+  http: ^0.13.4
+  another_flushbar: ^1.10.29
+  provider: ^6.0.3
   flutter:
     sdk: flutter
 
@@ -55,7 +59,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
+uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:
