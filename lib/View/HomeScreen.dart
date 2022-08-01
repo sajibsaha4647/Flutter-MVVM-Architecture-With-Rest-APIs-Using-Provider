@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 
+import '../Utils/Utils.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -16,7 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: InkWell(
           onTap: (){
-            Navigator.pushNamed(context, RoutesName.home);
+            // Navigator.pushNamed(context, RoutesName.home);
+            Utils.flashbarMethod("connection error",context);
           },
          child: Text("Home screen"),
         )

@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: InkWell(
             onTap: (){
               Navigator.pushNamed(context, RoutesName.login);
-              Utils.Toasts("go home");
+              Utils.flashbarMethod("go home",context);
             },
             child: Text("Home screen"),
           )
