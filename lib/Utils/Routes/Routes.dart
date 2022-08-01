@@ -6,7 +6,7 @@ import 'package:fluttermvvm/View/LoginScreen.dart';
 
 class Routes {
 
-  static MaterialPageRoute generateRoute(RouteSettings settings){
+  static Route<dynamic> generateRoute(RouteSettings settings){
 
     switch(settings.name){
       case RoutesName.home :

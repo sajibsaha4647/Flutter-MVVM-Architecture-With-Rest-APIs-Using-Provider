@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Utils/Routes/RoutesName.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -14,9 +16,14 @@ class _LoginScreenState extends State<LoginScreen> {
           appBar: AppBar(
             title: Text("Login screen"),
           ),
-          body: Center(
-            child: Text("Login screen"),
-          ),
+      body: Center(
+          child: InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, RoutesName.login);
+            },
+            child: Text("Home screen"),
+          )
+      ),
     ));
 
   }
