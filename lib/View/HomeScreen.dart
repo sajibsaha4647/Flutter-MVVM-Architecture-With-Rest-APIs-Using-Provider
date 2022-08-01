@@ -19,7 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: InkWell(
           onTap: (){
             // Navigator.pushNamed(context, RoutesName.home);
-            Utils.flashbarMethod("connection error",context);
+            // Utils.flashbarMethod("connection error",context);
+            Utils.Snackbar("new test",context);
           },
          child: Text("Home screen"),
         )
