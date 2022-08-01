@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttermvvm/Utils/Utils.dart';
 
 import '../Utils/Routes/RoutesName.dart';
 
@@ -20,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: InkWell(
             onTap: (){
               Navigator.pushNamed(context, RoutesName.login);
+              Utils.Toasts("go home");
             },
             child: Text("Home screen"),
           )
