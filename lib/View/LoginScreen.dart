@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Utils.dart';
-
-import '../Utils/Routes/RoutesName.dart';
+import 'package:fluttermvvm/ViewModel/AuthViewModel.dart';
+import 'package:provider/provider.dart';
 import '../res/Components/RoundButton.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,6 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authviewmodel = Provider.of<AuthViewmodel>(context) ;
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -93,8 +95,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 20,),
                 RoundButton(title: 'press',onPress: (){
-                  print("Login");
-                }, loading: false,)
+                  Map data = {
+                    "email":_emailcontrol.text,
+                    "password": _passwordcontrol.text,
+                  };
+                  authviewmodel.LoginProcess(data,null,context);
+                }, loading: authviewmodel.loading,)
               ],
             ),
                 )
