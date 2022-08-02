@@ -25,12 +25,12 @@ class UserViewModel with ChangeNotifier {
   }
 
 
-  void Removep()async{
+   Removep()async{
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.remove("LoginToken") ;
   }
 
-  void clearp()async{
+   clearp()async{
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.clear();
   }

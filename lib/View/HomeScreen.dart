@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
+import 'package:fluttermvvm/ViewModel/UserViewModel/UserViewModel.dart';
 import 'package:provider/provider.dart';
 
 import '../Utils/Utils.dart';
@@ -18,7 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final registrationViewmodel = Provider.of<RegistrationViewModel>(context) ;
+    final userviewmodel = Provider.of<UserViewModel>(context) ;
+
     // print();
     return SafeArea(child: Scaffold(
         appBar: AppBar(title: Text("Home screen"),),
@@ -27,9 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: (){
             // Navigator.pushNamed(context, RoutesName.home);
             // Utils.flashbarMethod("connection error",context);
-            Utils.Snackbar("new test",context);
+            // Utils.Snackbar("new test",context);
+            userviewmodel.Removep();
           },
-         child: Text("${registrationViewmodel.mydata[0]}"),
+         child: Text("Homescreen"),
         )
       ),
     ));
