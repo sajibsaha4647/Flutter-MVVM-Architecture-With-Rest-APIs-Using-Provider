@@ -14,6 +14,9 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailcontrol = TextEditingController();
   TextEditingController _passwordcontrol = TextEditingController();
 
+  FocusNode emailfocus = FocusNode();
+  FocusNode passwordfocus = FocusNode();
+
   bool _isObscure = true;
 
   @override
@@ -33,6 +36,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextFormField(
                     controller: _emailcontrol,
                     keyboardType: TextInputType.emailAddress,
+                    focusNode: emailfocus,
+                    onFieldSubmitted: (value){
+                      Utils.fiedlFocuschange(context, emailfocus,passwordfocus);
+                    },
                     decoration: const InputDecoration(
                       hintText: "email address"   ,
                          labelText:"email",
@@ -43,7 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFormField(
                   onTap: () {},
                   obscureText: _isObscure,
+                  focusNode: passwordfocus,
                   textAlignVertical: TextAlignVertical.top,
+                  obscuringCharacter: "*",
                   textAlign: TextAlign.start,
                   controller: _passwordcontrol,
                   keyboardType: TextInputType.text,

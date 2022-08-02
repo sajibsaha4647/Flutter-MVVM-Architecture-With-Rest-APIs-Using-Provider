@@ -44,4 +44,11 @@ class Utils {
       duration: Duration(seconds: 2),
     ));
   }
+
+  static fiedlFocuschange (BuildContext context, FocusNode current , FocusNode nextfocus){
+    current.unfocus();
+    FocusScope.of(context).requestFocus(nextfocus) ;
+  }
+
+
 }
