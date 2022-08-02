@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 
     ],child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesName.login,
+      initialRoute: RoutesName.splashscreen,
       onGenerateRoute: Routes.generateRoute ,
       theme: ThemeData(
         primarySwatch: Colors.blue,
