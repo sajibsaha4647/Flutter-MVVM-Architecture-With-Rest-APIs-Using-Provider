@@ -14,6 +14,13 @@ class RegistrationViewModel with ChangeNotifier {
   bool _loading = false ;
   bool get loading => _loading ;
 
+  var mydata = "" ;
+  get data => mydata;
+
+  setmydata(val){
+    mydata = val ;
+  }
+
   setloading(val){
     _loading = val ;
     notifyListeners();
@@ -30,6 +37,7 @@ class RegistrationViewModel with ChangeNotifier {
         if(kDebugMode){
           print(value.toString());
         }
+        setmydata(value);
         Navigator.pushNamed(context, RoutesName.home);
         Utils.flashbarMethod("Successfully Signup", context) ;
       }).onError((error, stackTrace) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
+import 'package:provider/provider.dart';
 
 import '../Utils/Utils.dart';
+import '../ViewModel/AuthViewmodel/RegistrationViewModel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,8 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
+    final registrationViewmodel = Provider.of<RegistrationViewModel>(context) ;
+    // print();
     return SafeArea(child: Scaffold(
         appBar: AppBar(title: Text("Home screen"),),
       body: Center(
@@ -22,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Utils.flashbarMethod("connection error",context);
             Utils.Snackbar("new test",context);
           },
-         child: Text("Home screen"),
+         child: Text("${registrationViewmodel.mydata[0]}"),
         )
       ),
     ));
