@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttermvvm/ViewModel/AuthViewmodel/RegistrationViewModel.dart';
+import 'package:provider/provider.dart';
 
 import '../Utils/Utils.dart';
 import '../res/Components/RoundButton.dart';
@@ -14,7 +16,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
 
   TextEditingController _emailcontrol = TextEditingController();
-  TextEditingController _passwordcontrol = TextEditingController();
+  TextEditingController _passwordcontrolss = TextEditingController();
 
   FocusNode emailfocus = FocusNode();
   FocusNode passwordfocus = FocusNode();
@@ -24,7 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
 
-
+    final registrationViewmodel = Provider.of<RegistrationViewModel>(context) ;
     return SafeArea(child: Scaffold(
       appBar: AppBar(title: Text("Signup pages"),),
         body: Center(
@@ -55,7 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     textAlignVertical: TextAlignVertical.top,
                     obscuringCharacter: "*",
                     textAlign: TextAlign.start,
-                    controller: _passwordcontrol,
+                    controller: _passwordcontrolss,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.password),
@@ -94,17 +96,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   SizedBox(height: 20,),
                   RoundButton(title: 'Signup',onPress: (){
                     Map data = {
-                      "email":_emailcontrol.text,
-                      "password": _passwordcontrol.text,
+                      "email":_emailcontrol.text.toString(),
+                      "password":_passwordcontrolss.text.toString(),
                     };
-                  }, loading: false),
-                  SizedBox(height: 20,),
-                  InkWell(
-                    onTap: (){
 
-                    },
-                    child: Text("Don't have an account ? Signup "),
-                  )
+                    registrationViewmodel.RegistrationProcess(data, context);
+                  }, loading: registrationViewmodel.loading),
+                  SizedBox(height: 20,),
                 ],
               ),
             )

@@ -5,6 +5,6 @@ class AppUrls {
 
   static const loginApi = "${BaseUrl}api/login";
 
-  static const registration = "${BaseUrl}/api/register" ;
+  static const registrationApi = "${BaseUrl}api/register" ;
 
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/Routes.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/View/LoginScreen.dart';
-import 'package:fluttermvvm/ViewModel/AuthViewModel.dart';
+import 'package:fluttermvvm/ViewModel/AuthViewmodel/AuthViewModel.dart';
+import 'package:fluttermvvm/ViewModel/AuthViewmodel/RegistrationViewModel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_)=>AuthViewmodel()),
+      ChangeNotifierProvider(create: (_)=>RegistrationViewModel()),
 
     ],child: MaterialApp(
       debugShowCheckedModeBanner: false,

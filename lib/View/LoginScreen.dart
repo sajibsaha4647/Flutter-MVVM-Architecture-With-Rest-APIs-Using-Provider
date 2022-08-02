@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/Utils/Utils.dart';
-import 'package:fluttermvvm/ViewModel/AuthViewModel.dart';
+import 'package:fluttermvvm/ViewModel/AuthViewmodel/AuthViewModel.dart';
 import 'package:provider/provider.dart';
 import '../res/Components/RoundButton.dart';
 
@@ -97,10 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 20,),
                 RoundButton(title: 'Login',onPress: (){
                   Map data = {
-                    "email":_emailcontrol.text,
-                    "password": _passwordcontrol.text,
+                    "email":_emailcontrol.text.toString(),
+                    "password": _passwordcontrol.text.toString(),
                   };
-                  authviewmodel.LoginProcess(data,null,context);
+                  authviewmodel.LoginProcess(data,context);
                 }, loading: authviewmodel.loading,),
                 SizedBox(height: 20,),
                 InkWell(

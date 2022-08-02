@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/Utils/Utils.dart';
-import '../Repository/AuthrepoSitory.dart';
+import '../../Repository/AuthrepoSitory.dart';
 
 class AuthViewmodel with ChangeNotifier {
 
@@ -17,12 +17,13 @@ class AuthViewmodel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void>LoginProcess( dynamic data,header,context)async{
+  Future<void>LoginProcess( dynamic data,context)async{
         if(data["email"] == '' || data["password"] == ''){
             Utils.flashbarMethod("all field is required", context) ;
+            print(data);
         }else{
           setloading(true);
-            authRepo.Loginprocess(data, header).then((value){
+            authRepo.Loginprocess(data).then((value){
               setloading(false);
                 if(kDebugMode){
                   print(value.toString());
@@ -38,5 +39,8 @@ class AuthViewmodel with ChangeNotifier {
             });
         }
   }
+
+
+
 
 }
