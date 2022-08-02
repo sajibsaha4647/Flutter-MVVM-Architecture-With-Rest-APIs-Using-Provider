@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/View/HomeScreen.dart';
 import 'package:fluttermvvm/View/LoginScreen.dart';
+import 'package:fluttermvvm/View/SignupScreen.dart';
 
 class Routes {
 
@@ -13,6 +14,8 @@ class Routes {
         return MaterialPageRoute(builder: (BuildContext context)=>const HomeScreen());
       case RoutesName.login :
         return MaterialPageRoute(builder: (BuildContext context)=>const LoginScreen());
+      case RoutesName.signup:
+        return MaterialPageRoute(builder: (BuildContext context)=>const SignupScreen());
       default:
         return MaterialPageRoute(builder: (_){
           return const SafeArea(child: Scaffold(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/Utils/Utils.dart';
 import 'package:fluttermvvm/ViewModel/AuthViewModel.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             _isObscure = false;
                           });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.remove_red_eye,
                           size: 20,
                           color: Colors.black,
@@ -80,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             _isObscure = true;
                           });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.visibility_off,
                           size: 20,
                           color: Colors.black,
@@ -94,13 +95,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: 20,),
-                RoundButton(title: 'press',onPress: (){
+                RoundButton(title: 'Login',onPress: (){
                   Map data = {
                     "email":_emailcontrol.text,
                     "password": _passwordcontrol.text,
                   };
                   authviewmodel.LoginProcess(data,null,context);
-                }, loading: authviewmodel.loading,)
+                }, loading: authviewmodel.loading,),
+                SizedBox(height: 20,),
+                InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, RoutesName.signup);
+                  },
+                  child: Text("Don't have an account ? Signup "),
+                )
               ],
             ),
                 )
