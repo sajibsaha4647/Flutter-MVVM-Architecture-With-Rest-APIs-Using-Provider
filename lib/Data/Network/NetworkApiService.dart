@@ -30,13 +30,14 @@ class NetworkApiServiece extends BaseApiservices{
 
   //here i get post response
   @override
-  Future getPostApiResponse(String url, dynamic data)async {
+  Future getPostApiResponse(String url, dynamic data,dynamic header)async {
     dynamic responseJson ;
 
     try{
      Response response = await post(
          Uri.parse(url),
-       body:data
+       headers: header,
+       body:data,
      ).timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response) ;
 
