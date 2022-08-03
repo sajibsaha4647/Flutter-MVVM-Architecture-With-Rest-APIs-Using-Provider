@@ -14,6 +14,8 @@ class SplashViewServices{
   void checkAuthenticationService( BuildContext context ){
 
     getuserData().then((value) async{
+      print(value.token.runtimeType);
+      print(value.token);
       if(value.token == 'null' || value.token == ''){
        await Future.delayed(Duration(seconds: 3));
         Navigator.pushNamed(context, RoutesName.login) ;

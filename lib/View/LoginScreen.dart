@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Text("Login screen"),
             ),
             body: Center(

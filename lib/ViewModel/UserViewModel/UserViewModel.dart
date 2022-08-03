@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttermvvm/Utils/Utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Model/LoginModel.dart';
@@ -23,10 +24,11 @@ class UserViewModel with ChangeNotifier {
   }
 
 
-   Future<bool> Removep()async{
-    final SharedPreferences sp = await SharedPreferences.getInstance();
-    sp.remove("LoginToken") ;
-    return true ;
+   Future<bool> Removep(BuildContext context)async{
+    // final SharedPreferences sp = await SharedPreferences.getInstance();
+     final prefs = await SharedPreferences.getInstance();
+     final success = await prefs.remove('token');
+    return success ;
   }
 
   Future<bool> clearp()async{

@@ -23,11 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // print();
     return SafeArea(child: Scaffold(
-        appBar: AppBar(title: Text("Home screen"),),
+
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text("Home screen"),),
       body: Center(
         child: InkWell(
           onTap: (){
-            userviewmodel.Removep().then((value){
+            userviewmodel.Removep(context).then((value){
               Navigator.pushNamed(context, RoutesName.login);
             });
           },
