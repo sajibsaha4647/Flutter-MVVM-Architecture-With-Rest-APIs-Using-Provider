@@ -27,10 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: InkWell(
           onTap: (){
-            // Navigator.pushNamed(context, RoutesName.home);
-            // Utils.flashbarMethod("connection error",context);
-            // Utils.Snackbar("new test",context);
-            userviewmodel.Removep();
+            userviewmodel.Removep().then((value){
+              Navigator.pushNamed(context, RoutesName.login);
+            });
           },
          child: Text("Homescreen"),
         )

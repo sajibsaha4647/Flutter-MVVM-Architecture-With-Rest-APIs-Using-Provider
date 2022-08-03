@@ -6,17 +6,15 @@ import 'package:fluttermvvm/ViewModel/UserViewModel/UserViewModel.dart';
 
 import '../../Model/LoginModel.dart';
 
+
 class SplashViewServices{
 
+  Future<UserModel>getuserData() => UserViewModel().GetUserp();
 
-  //retrive here check auth
   void checkAuthenticationService( BuildContext context ){
 
-    Future<LoginModel>getuserData() => UserViewModel().GetUserp();
-
     getuserData().then((value) async{
-
-      if(value == null || value == ''){
+      if(value.token == 'null' || value.token == ''){
        await Future.delayed(Duration(seconds: 3));
         Navigator.pushNamed(context, RoutesName.login) ;
       }else{

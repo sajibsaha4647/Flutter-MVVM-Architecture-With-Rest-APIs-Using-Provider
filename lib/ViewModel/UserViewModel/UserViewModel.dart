@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:fluttermvvm/Model/LoginModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../Model/LoginModel.dart';
 
 class UserViewModel with ChangeNotifier {
 
 
 
-  Future<bool> SaveUserp(LoginModel user) async {
+  Future<bool> SaveUserp(UserModel user) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    sp.setString("LoginToken", user.token.toString());
+    sp.setString("token", user.token.toString());
     notifyListeners();
     return true;
   }
 
-  Future<LoginModel> GetUserp() async {
+  Future<UserModel> GetUserp() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-
-    final String? token  = sp.getString("LoginToken") ;
-
-    return LoginModel(
-      token: token
+    final String? token  = sp.getString("token") ;
+    return UserModel(
+      token: token.toString()
     );
-
   }
 
 
-   Removep()async{
+   Future<bool> Removep()async{
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.remove("LoginToken") ;
+    return true ;
   }
 
-   clearp()async{
+  Future<bool> clearp()async{
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.clear();
+    return true ;
   }
 
 

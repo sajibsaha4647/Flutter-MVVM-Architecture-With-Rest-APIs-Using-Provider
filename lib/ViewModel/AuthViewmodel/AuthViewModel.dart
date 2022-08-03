@@ -3,7 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/Utils/Utils.dart';
+import 'package:provider/provider.dart';
+import '../../Model/LoginModel.dart';
 import '../../Repository/AuthrepoSitory.dart';
+import '../UserViewModel/UserViewModel.dart';
 
 class AuthViewmodel with ChangeNotifier {
 
@@ -18,6 +21,9 @@ class AuthViewmodel with ChangeNotifier {
   }
 
   Future<void>LoginProcess( dynamic data,context)async{
+
+    final userPreference = Provider.of<UserViewModel>(context , listen: false);
+
         if(data["email"] == '' || data["password"] == ''){
             Utils.flashbarMethod("all field is required", context) ;
             print(data);
@@ -28,6 +34,12 @@ class AuthViewmodel with ChangeNotifier {
                 if(kDebugMode){
                   print(value.toString());
                 }
+                print(value);
+              userPreference.SaveUserp(
+                  UserModel(
+                      token: value['token'].toString()
+                  )
+              );
                 Navigator.pushNamed(context, RoutesName.home);
                 Utils.flashbarMethod("Successfully login", context) ;
             }).onError((error, stackTrace) {
