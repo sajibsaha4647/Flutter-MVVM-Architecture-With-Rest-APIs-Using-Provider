@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
+import 'package:fluttermvvm/ViewModel/HomeViewModel/HomeViewModel.dart';
 import 'package:fluttermvvm/ViewModel/UserViewModel/UserViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -17,13 +18,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  HomeViewModel homeViewModel = HomeViewModel() ;
 
+  @override
+  void initState() {
+    homeViewModel.fetchUserDataApi();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final userviewmodel = Provider.of<UserViewModel>(context) ;
+    final UserDatamodels = Provider.of<HomeViewModel>(context) ;
 
-    // print();
+
     return SafeArea(child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -49,3 +57,5 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 }
+
+

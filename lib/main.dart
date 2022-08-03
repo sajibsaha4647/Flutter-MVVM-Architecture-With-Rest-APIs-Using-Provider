@@ -6,6 +6,7 @@ import 'package:fluttermvvm/ViewModel/AuthViewmodel/AuthViewModel.dart';
 import 'package:fluttermvvm/ViewModel/AuthViewmodel/RegistrationViewModel.dart';
 import 'package:provider/provider.dart';
 
+import 'ViewModel/HomeViewModel/HomeViewModel.dart';
 import 'ViewModel/UserViewModel/UserViewModel.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_)=>AuthViewmodel()),
       ChangeNotifierProvider(create: (_)=>RegistrationViewModel()),
       ChangeNotifierProvider(create: (_)=>UserViewModel()),
+      ChangeNotifierProvider(create: (_)=>HomeViewModel()),
 
     ],child: MaterialApp(
       debugShowCheckedModeBanner: false,

@@ -14,7 +14,6 @@ class AutthReopsitory {
     try{
       dynamic response = baseApiservices.getPostApiResponse(AppUrls.loginApi, data);
       return response ;
-
     }catch(e){
       throw e ;
     }

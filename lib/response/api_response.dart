@@ -11,8 +11,8 @@ class ApiResponse<T>{
   ApiResponse(this.status, this.data, this.message) ;
 
   ApiResponse.loading() : status = Status.LOADING ;
-  ApiResponse.success() : status = Status.SUCCESS ;
-  ApiResponse.failed() : status = Status.FAILED;
+  ApiResponse.success(this.data) : status = Status.SUCCESS ;
+  ApiResponse.failed(this.message) : status = Status.FAILED;
 
 
   String toString(){

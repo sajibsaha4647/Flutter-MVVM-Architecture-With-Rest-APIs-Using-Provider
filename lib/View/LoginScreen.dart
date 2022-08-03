@@ -21,8 +21,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isObscure = true;
 
+
+
   @override
   Widget build(BuildContext context) {
+
     final authviewmodel = Provider.of<AuthViewmodel>(context) ;
 
     return SafeArea(
