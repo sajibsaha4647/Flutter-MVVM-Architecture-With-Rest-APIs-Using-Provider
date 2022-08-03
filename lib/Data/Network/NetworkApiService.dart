@@ -2,7 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
-
+import 'dart:convert' as convert;
 import 'package:fluttermvvm/Data/ExceptionHandle.dart';
 import 'package:fluttermvvm/Data/Network/BaseApiservice.dart';
 import 'package:http/http.dart' as http;
@@ -13,17 +13,20 @@ class NetworkApiServiece extends BaseApiservices{
 
   //here i get Get response
   @override
-  Future getGetApiResponse(String url) async{
-    dynamic responseJson ;
-    try{
-      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10)) ;
-      responseJson = returnResponse(response) ;
+  Future getGetApiResponse(String url) async {
 
-    }on SocketException{
-      throw FetchDataException("$connectionNetwork !");
+    dynamic responseJson ;
+    try {
+
+      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    }on SocketException {
+
+      throw FetchDataException('No Internet Connection');
     }
 
-    return responseJson ;
+    return responseJson;
+
   }
 
   //here i get post response
@@ -49,7 +52,7 @@ class NetworkApiServiece extends BaseApiservices{
 
     switch(response.statusCode){
       case 200:
-        dynamic responsJson = jsonDecode(response.body) ;
+        dynamic responsJson = convert.jsonDecode(response.body) ;
         return responsJson ;
       case 400:
         throw BadRequestExceptoin(response.body.toString());

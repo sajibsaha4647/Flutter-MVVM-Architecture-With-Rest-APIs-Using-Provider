@@ -9,4 +9,6 @@ class RoutesName {
 
   static const String signup = "signup_Screen" ;
 
+  static const String homedetails = "homedetails_Screen" ;
+
 }

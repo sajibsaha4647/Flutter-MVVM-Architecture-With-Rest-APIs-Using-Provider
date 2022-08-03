@@ -7,6 +7,7 @@ class AppUrls {
 
   static const registrationApi = "${BaseUrl}api/register" ;
 
-  static const getUserdataApi = "${BaseUrl}api/users/2" ;
+  // static const getUserdataApi = "${BaseUrl}api/users/2" ;
+  static const getUserdataApi = "https://jsonplaceholder.typicode.com/todos/1" ;
 
 }

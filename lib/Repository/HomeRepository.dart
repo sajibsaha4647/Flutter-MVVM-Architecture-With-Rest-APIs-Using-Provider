@@ -10,7 +10,6 @@ class HomeRepository {
   BaseApiservices baseApiservices = NetworkApiServiece() ;
 
   Future<UserDataModel>fetchUserDataApi()async{
-
     try{
       dynamic response = baseApiservices.getGetApiResponse(AppUrls.getUserdataApi);
       return response = UserDataModel.fromJson(response) ;
