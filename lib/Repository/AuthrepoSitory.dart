@@ -20,17 +20,6 @@ class AutthReopsitory {
     }
   }
 
-  //
-  // Future<dynamic>RegistrationProcess(dynamic data){
-  //   try{
-  //     dynamic response = baseApiservices.getPostApiResponse(AppUrls.registration, data) ;
-  //     return response ;
-  //   }catch(e){
-  //     throw e ;
-  //   }
-  //
-  // }
-
 
   Future<dynamic>RegistrationProcess(dynamic data)async{
 

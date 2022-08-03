@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/ViewModel/UserViewModel/UserViewModel.dart';
@@ -23,19 +25,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // print();
     return SafeArea(child: Scaffold(
-
         appBar: AppBar(
+          centerTitle: true,
           automaticallyImplyLeading: false,
-          title: Text("Home screen"),),
+          title: Text("Home screen"),
+        actions: [
+          InkWell(
+            onTap: (){
+              userviewmodel.Removep(context).then((value){
+                Navigator.pushNamed(context, RoutesName.login);
+              });
+            },
+            child: Center(
+             child: Text("Logout"),
+            )
+          ),
+          SizedBox(width: 15,)
+        ],
+        ),
       body: Center(
-        child: InkWell(
-          onTap: (){
-            userviewmodel.Removep(context).then((value){
-              Navigator.pushNamed(context, RoutesName.login);
-            });
-          },
-         child: Text("Homescreen"),
-        )
+        child:  Text("Homescreen"),
       ),
     ));
   }
