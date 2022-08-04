@@ -18,26 +18,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  HomeViewModel homeviewmodels = HomeViewModel();
 
-
-  // Future<HomeViewModel>? homeViewModel;
 
   @override
   void initState() {
     super.initState();
 
-    // final homeviewmodels = Provider.of<HomeViewModel>(context, listen: false);
-    // homeviewmodels.fetchMoviesListApi();
     final homeviewmodels = Provider.of<HomeViewModel>(context, listen: false);
     Future.delayed(Duration.zero, () {
       homeviewmodels.fetchMoviesListApi();
     });
-
-
-
-
-
   }
 
   @override
@@ -51,47 +41,47 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        title: Text("Home screen"),
-        actions: [
-          InkWell(
-              onTap: () {
-                userviewmodel.Removep(context).then((value) {
-                  Navigator.pushNamed(context, RoutesName.login);
-                });
-              },
-              child: Center(
-                child: Text("Logout"),
-              )),
-          SizedBox(
-            width: 15,
-          )
-        ],
-      ),
-          body: Column(
-            children:[
+            appBar: AppBar(
+              centerTitle: true,
+              automaticallyImplyLeading: false,
+              title: const Text("Home screen"),
+              actions: [
+                InkWell(
+                    onTap: () {
+                      userviewmodel.Removep(context).then((value) {
+                        Navigator.pushNamed(context, RoutesName.login);
+                      });
+                    },
+                    child: const Center(
+                      child: Text("Logout"),
+                    )),
+                const SizedBox(
+                  width: 15,
+                )
+              ],
+            ),
+            body: Column(children: [
               Container(
-                  child: (((){
-                    if(homeviewmodels.userdata.status == Status.LOADING){
-                      return Center(child: CircularProgressIndicator());
-                    }else if(homeviewmodels.userdata.status == Status.FAILED){
-                      return Center(child: Text(homeviewmodels.userdata.message.toString()));
-                    }else{
-                      return Center(child: Text(homeviewmodels.userdata.data!.data!.email.toString()));
-                    }
-                  }()))
-              ),
+                  child: ((() {
+                if (homeviewmodels.userdata.status == Status.LOADING) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (homeviewmodels.userdata.status == Status.FAILED) {
+                  return Center(
+                      child: Text(homeviewmodels.userdata.message.toString()));
+                } else {
+                  return Center(
+                      child: Text(homeviewmodels.userdata.data!.data!.email
+                          .toString()));
+                }
+              }()))),
               InkWell(
-                onTap: (){
-                  homeviewmodels.fetchMoviesListApi();
+                onTap: () {
+                  Navigator.pushNamed(context, RoutesName.homedetails);
+                  homeviewmodels.seterror(40);
                 },
-                child: Text("press"),
+                child: const Text("press"),
               )
-            ]
-          )
-    ));
+            ])));
   }
 }
 

@@ -16,15 +16,15 @@ class _HomeDetailsState extends State<HomeDetails> {
 
   @override
   Widget build(BuildContext context) {
-
-    final homeViewModel = Provider.of<HomeViewModel>(context) ;
+    final homeviewmodels = Provider.of<HomeViewModel>(context, listen: true);
 
     return SafeArea(child: Scaffold(
       appBar: AppBar(
         title: Text("homw details"),
       ),
       body: Container(
-        child: Text("slkjfskldfj"),
+        child: Text(homeviewmodels.userdata.data!.data!.email
+            .toString()),
       ),
     ));
   }

@@ -13,7 +13,6 @@ class HomeRepository {
     try{
       dynamic response = await baseApiservices.getGetApiResponse(AppUrls.getUserdataApi);
       return response = UserDataModel.fromJson(response) ;
-
     }catch(e){
       throw e ;
     }
