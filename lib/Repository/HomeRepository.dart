@@ -11,7 +11,7 @@ class HomeRepository {
 
   Future<UserDataModel>fetchUserDataApi()async{
     try{
-      dynamic response = baseApiservices.getGetApiResponse(AppUrls.getUserdataApi);
+      dynamic response = await baseApiservices.getGetApiResponse(AppUrls.getUserdataApi);
       return response = UserDataModel.fromJson(response) ;
 
     }catch(e){

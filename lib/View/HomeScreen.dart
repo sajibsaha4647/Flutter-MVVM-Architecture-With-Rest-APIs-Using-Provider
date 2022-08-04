@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttermvvm/Utils/Routes/RoutesName.dart';
 import 'package:fluttermvvm/ViewModel/HomeViewModel/HomeViewModel.dart';
@@ -17,19 +18,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  HomeViewModel homeViewModel = HomeViewModel();
+  HomeViewModel homeviewmodels = HomeViewModel();
+
+
+  // Future<HomeViewModel>? homeViewModel;
 
   @override
   void initState() {
-
     super.initState();
+
+    // final homeviewmodels = Provider.of<HomeViewModel>(context, listen: false);
+    // homeviewmodels.fetchMoviesListApi();
+    final homeviewmodels = Provider.of<HomeViewModel>(context, listen: false);
+    Future.delayed(Duration.zero, () {
+      homeviewmodels.fetchMoviesListApi();
+    });
+
+
+
+
+
   }
 
   @override
   Widget build(BuildContext context) {
     final userviewmodel = Provider.of<UserViewModel>(context);
+    final homeviewmodels = Provider.of<HomeViewModel>(context, listen: true);
 
-    // final homeViewModels = Provider.of<HomeViewModel>(context,listen:  false);
+    if (kDebugMode) {
+      print(homeviewmodels.userdata.toString());
+    }
 
     return SafeArea(
         child: Scaffold(
@@ -52,49 +70,30 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-          body: ChangeNotifierProvider<UserDataModel>(
-            create: (BuildContext context) => HomeViewModel(),
-            child: Consumer<HomeViewModel>(
-                builder: (context, value, _){
-                  switch(value.moviesList.status){
-                    case Status.LOADING:
+          body: Column(
+            children:[
+              Container(
+                  child: (((){
+                    if(homeviewmodels.userdata.status == Status.LOADING){
                       return Center(child: CircularProgressIndicator());
-                    case Status.ERROR:
-                      return Center(child: Text(value.moviesList.message.toString()));
-                    case Status.COMPLETED:
-                      return ListView.builder(
-                          itemCount: value.moviesList.data!.movies!.length,
-                          itemBuilder: (context,index){
-                            return Card(
-                              child: ListTile(
-
-                                leading: Image.network(
-
-                                  value.moviesList.data!.movies![index].posterurl.toString(),
-                                  errorBuilder: (context, error, stack){
-                                    return Icon(Icons.error, color: Colors.red,);
-                                  },
-                                  height: 40,
-                                  width: 40,
-                                  fit: BoxFit.cover,
-                                ),
-                                title: Text(value.moviesList.data!.movies![index].title.toString()),
-                                subtitle: Text(value.moviesList.data!.movies![index].year.toString()),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(Utils.averageRating(value.moviesList.data!.movies![index].ratings!).toStringAsFixed(1)),
-                                    Icon(Icons.star , color: Colors.yellow,)
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
-
-                  }
-                  return Container();
-                }),
-          ) ,
+                    }else if(homeviewmodels.userdata.status == Status.FAILED){
+                      return Center(child: Text(homeviewmodels.userdata.message.toString()));
+                    }else{
+                      return Center(child: Text(homeviewmodels.userdata.data!.data!.email.toString()));
+                    }
+                  }()))
+              ),
+              InkWell(
+                onTap: (){
+                  homeviewmodels.fetchMoviesListApi();
+                },
+                child: Text("press"),
+              )
+            ]
+          )
     ));
   }
 }
+
+
+// Text(homeviewmodels.userdata.data!.data!.email.toString()),

@@ -10,40 +10,65 @@ class HomeViewModel with ChangeNotifier{
 
   final HomeRepo = HomeRepository();
 
-  // ApiResponse<UserDataModel> userdata = ApiResponse.loading();
 
 
-  bool _loading = false ;
 
-  bool get loading => _loading ;
 
-  setloading(val){
-    _loading = val ;
-    notifyListeners();
+
+  final _myRepo = HomeRepository() ;
+
+    var _loading ;
+    get loading => _loading ;
+    setloading(val){
+      _loading = val ;
+      notifyListeners();
+    }
+
+    var _error = 10;
+    get error => _error ;
+    seterror(val){
+      _error = val ;
+      notifyListeners();
   }
 
-  final _myRepo = HomeRepository()
 
-  ApiResponse<UserDataModel> moviesList = ApiResponse.loading();
+  ApiResponse<UserDataModel> userdata = ApiResponse.loading();
 
   setMoviesList(ApiResponse<UserDataModel> response){
-    moviesList = response ;
+    userdata = response ;
     notifyListeners();
   }
+
 
 
   Future<void> fetchMoviesListApi ()async{
 
-    setMoviesList(ApiResponse.loading());
+    // setMoviesList(ApiResponse.loading());
+
+    setloading(true);
+    seterror(12);
+    print(_error);
+    print( "truel $_loading");
 
     _myRepo.fetchUserDataApi().then((value){
-
-      setMoviesList(ApiResponse.success(value));
+      if(value.data?.email != null){
+        print("appppp ${value.toJson()}");
+      }else{
+        print("appppp ${value.data?.email}");
+      }
+      setloading(false);
+      print( "falsel $_loading");
+      seterror(13);
+      print(_error);
+      setMoviesList(ApiResponse.completed(value));
 
     }).onError((error, stackTrace){
+      setMoviesList(ApiResponse.error(error.toString()));
+      setloading(false);
 
-      setMoviesList(ApiResponse.failed(error.toString()));
-
+      print( "falseerrl $_loading");
+      seterror(14);
+      print(_error);
     });
   }
 

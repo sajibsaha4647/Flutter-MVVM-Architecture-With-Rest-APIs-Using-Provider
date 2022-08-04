@@ -24,7 +24,7 @@ class _HomeDetailsState extends State<HomeDetails> {
         title: Text("homw details"),
       ),
       body: Container(
-        child: Text(homeViewModel.getResponData[0]["first_name"]),
+        child: Text("slkjfskldfj"),
       ),
     ));
   }

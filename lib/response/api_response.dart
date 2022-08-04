@@ -1,22 +1,25 @@
+import 'package:fluttermvvm/Model/UserDataModel.dart';
 import 'package:fluttermvvm/response/status.dart';
 
 class ApiResponse<T>{
 
   Status? status ;
-
   T? data ;
-
   String? message ;
 
-  ApiResponse(this.status, this.data, this.message) ;
+  ApiResponse(this.status , this.data, this.message);
+
 
   ApiResponse.loading() : status = Status.LOADING ;
-  ApiResponse.success(this.data) : status = Status.SUCCESS ;
-  ApiResponse.failed(this.message) : status = Status.FAILED;
+
+  ApiResponse.completed(this.data) : status = Status.SUCCESS ;
+
+  ApiResponse.error(this.message) : status = Status.FAILED ;
 
 
+  @override
   String toString(){
-    return 'status:  $status \n message: $message \n $data' ;
+    return "Status : $status \n Message : $message \n Data: $data" ;
   }
 
 }
